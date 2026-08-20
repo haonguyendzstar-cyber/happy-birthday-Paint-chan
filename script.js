@@ -1,20 +1,35 @@
+/* =====================================================
+   HAPPY BIRTHDAY - SCRIPT.JS
+===================================================== */
+
+
+/* =========================
+   LẤY CÁC PHẦN TỬ HTML
+========================= */
+
 const intro = document.getElementById("intro");
 const birthday = document.getElementById("birthday");
 
 const flame = document.getElementById("flame");
 const wish = document.getElementById("wish");
 
-const blowButton = document.getElementById("blowButton");
-
 const music = document.getElementById("music");
-
 const typing = document.getElementById("typing");
-
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
 
 const heartsContainer =
     document.getElementById("hearts");
+
+const cakeArea =
+    document.getElementById("cakeArea");
+
+const instruction =
+    document.getElementById("instruction");
+
+const canvas =
+    document.getElementById("fireworks");
+
+const ctx =
+    canvas ? canvas.getContext("2d") : null;
 
 
 /* =========================
@@ -22,30 +37,35 @@ const heartsContainer =
 ========================= */
 
 let candleBlown = false;
-
 let typingStarted = false;
-
 let fireworksStarted = false;
+let heartInterval = null;
+let celebrationHeartInterval = null;
 
 
 /* =========================
-   START BIRTHDAY
+   MỞ QUÀ
 ========================= */
 
 function startBirthday() {
 
-    intro.classList.add("hidden");
+    /* Ẩn màn hình mở đầu */
 
-    birthday.classList.remove("hidden");
+    if (intro) {
+        intro.classList.add("hidden");
+    }
 
 
-    /*
-        Bắt đầu nhạc.
+    /* Hiện màn hình sinh nhật */
 
-        Trình duyệt thường cho phép
-        phát nhạc vì người dùng vừa
-        nhấn nút "Mở quà".
-    */
+    if (birthday) {
+        birthday.classList.remove("hidden");
+    }
+
+
+    /* =====================
+       PHÁT NHẠC
+    ===================== */
 
     if (music) {
 
@@ -54,30 +74,30 @@ function startBirthday() {
         music.play().catch(() => {
 
             console.log(
-                "Không thể tự động phát nhạc."
+                "Trình duyệt không cho phép phát nhạc tự động."
             );
 
         });
     }
 
 
-    /*
-        Bắt đầu tạo tim nhẹ nhàng
-        ngay khi mở quà.
-    */
+    /* =====================
+       BẮT ĐẦU TIM BAY
+    ===================== */
 
     startFlyingHearts();
 }
 
 
 /* =========================
-   BLOW CANDLE
+   THỔI NẾN
 ========================= */
 
 function blowCandle() {
 
     /*
-        Không cho bấm nhiều lần.
+        Nếu đã thổi rồi
+        thì không làm lại.
     */
 
     if (candleBlown) {
@@ -87,30 +107,19 @@ function blowCandle() {
     candleBlown = true;
 
 
-    /* Tắt lửa */
+    /* =====================
+       TẮT NGỌN LỬA
+    ===================== */
 
     if (flame) {
 
-        flame.style.display =
-            "none";
+        flame.style.display = "none";
     }
 
 
-    /* Ẩn nút */
-
-    if (blowButton) {
-
-        blowButton.style.display =
-            "none";
-    }
-
-
-    /* Đổi hướng dẫn */
-
-    const instruction =
-        document.querySelector(
-            ".instruction"
-        );
+    /* =====================
+       Đổi dòng hướng dẫn
+    ===================== */
 
     if (instruction) {
 
@@ -119,60 +128,73 @@ function blowCandle() {
     }
 
 
-    /* Hiện lời chúc */
+    /* =====================
+       Hiện lời chúc
+    ===================== */
 
     if (wish) {
 
-        wish.classList.remove(
-            "hidden"
-        );
+        wish.classList.remove("hidden");
     }
 
 
-    /*
-        Bắt đầu pháo hoa
-    */
+    /* =====================
+       Hiệu ứng pháo hoa
+    ===================== */
 
     startFireworks();
 
 
-    /*
-        Bắt đầu hiệu ứng
-        chữ chạy từng ký tự.
-    */
+    /* =====================
+       Hiệu ứng chữ chạy
+    ===================== */
 
     typeWish();
 
 
-    /*
-        Tăng số lượng tim
-        sau khi thổi nến.
-    */
+    /* =====================
+       Tăng tim bay
+    ===================== */
 
     startCelebrationHearts();
 }
 
 
 /* =========================
-   LỜI CHÚC
+   CLICK VÀO BÁNH
 ========================= */
+
+if (cakeArea) {
+
+    cakeArea.addEventListener(
+        "click",
+        blowCandle
+    );
+}
+
+
+/* =====================================================
+   LỜI CHÚC
+===================================================== */
 
 const message =
     "Chúc bé Paint của ck tuổi mới thật nhiều niềm vui, " +
     "luôn mạnh khỏe, hạnh phúc và may mắn. " +
-    "Mong rằng mọi điều tốt đẹp nhất " +
-    "sẽ đến với bé. " +
-    "Hãy luôn mỉm cười và theo đuổi " +
-    "những điều mình yêu thích nhé! ❤️";
+    "Mong rằng mọi điều tốt đẹp nhất sẽ đến với bé. " +
+    "Hãy luôn mỉm cười và theo đuổi những điều mình yêu thích nhé! ❤️";
 
 
-let index = 0;
+let messageIndex = 0;
 
+
+/* =========================
+   BẮT ĐẦU GÕ CHỮ
+========================= */
 
 function typeWish() {
 
     /*
-        Không chạy lại nếu đã bắt đầu.
+        Không cho chạy nhiều lần.
     */
 
     if (typingStarted) {
@@ -181,7 +203,8 @@ function typeWish() {
 
     typingStarted = true;
 
-    index = 0;
+    messageIndex = 0;
+
 
     if (typing) {
 
@@ -193,6 +216,10 @@ function typeWish() {
 }
 
 
+/* =========================
+   GÕ TỪNG KÝ TỰ
+========================= */
+
 function writeNextCharacter() {
 
     if (!typing) {
@@ -200,34 +227,39 @@ function writeNextCharacter() {
     }
 
 
-    if (index < message.length) {
+    if (messageIndex < message.length) {
 
         typing.innerHTML +=
-            message.charAt(index);
+            message.charAt(messageIndex);
 
-        index++;
+        messageIndex++;
 
 
         setTimeout(
             writeNextCharacter,
             45
         );
-
     }
-
 }
 
 
+/* =====================================================
+   PHÁO HOA
+===================================================== */
+
+let particles = [];
+
+
 /* =========================
-   FIREWORKS
+   ĐIỀU CHỈNH CANVAS
 ========================= */
 
-
-/*
-    Thiết lập kích thước canvas.
-*/
-
 function resizeCanvas() {
+
+    if (!canvas) {
+        return;
+    }
+
 
     canvas.width =
         window.innerWidth;
@@ -246,18 +278,21 @@ window.addEventListener(
 );
 
 
-/*
-    Danh sách hạt pháo hoa.
-*/
-
-let particles = [];
-
-
-/*
-    Tạo một pháo hoa.
-*/
+/* =========================
+   TẠO PHÁO HOA
+========================= */
 
 function createFirework() {
+
+    if (!canvas) {
+        return;
+    }
+
+
+    /*
+        Vị trí pháo hoa
+        tập trung ở phần trên.
+    */
 
     const x =
         Math.random() *
@@ -271,14 +306,16 @@ function createFirework() {
 
 
     /*
-        Màu của một quả pháo
-        sẽ được giữ cố định
-        cho toàn bộ hạt.
+        Một màu cho mỗi quả pháo.
     */
 
     const hue =
         Math.random() * 360;
 
+
+    /*
+        Tạo 90 hạt.
+    */
 
     for (let i = 0; i < 90; i++) {
 
@@ -289,15 +326,12 @@ function createFirework() {
 
 
         const speed =
-            Math.random() *
-            6 +
-            2;
+            Math.random() * 6 + 2;
 
 
         particles.push({
 
             x: x,
-
             y: y,
 
             vx:
@@ -311,9 +345,7 @@ function createFirework() {
             life: 100,
 
             size:
-                Math.random() *
-                3 +
-                1,
+                Math.random() * 3 + 1,
 
             hue: hue
 
@@ -322,11 +354,20 @@ function createFirework() {
 }
 
 
-/*
-    Animation pháo hoa.
-*/
+/* =========================
+   ANIMATE PHÁO HOA
+========================= */
 
 function animateFireworks() {
+
+    if (!ctx || !canvas) {
+        return;
+    }
+
+
+    /*
+        Xóa khung hình trước.
+    */
 
     ctx.clearRect(
         0,
@@ -337,43 +378,48 @@ function animateFireworks() {
 
 
     /*
-        Vẽ từng hạt.
+        Cập nhật từng hạt.
     */
 
     particles.forEach(
-        (p, index) => {
+        (particle, index) => {
 
-            p.x += p.vx;
+            particle.x +=
+                particle.vx;
 
-            p.y += p.vy;
+            particle.y +=
+                particle.vy;
 
 
             /*
-                Trọng lực nhẹ.
+                Trọng lực.
             */
 
-            p.vy += 0.05;
+            particle.vy += 0.05;
 
 
             /*
-                Giảm tốc một chút.
+                Giảm tốc nhẹ.
             */
 
-            p.vx *= 0.99;
-
-            p.vy *= 0.99;
-
-
-            p.life--;
+            particle.vx *= 0.99;
+            particle.vy *= 0.99;
 
 
             /*
-                Độ trong suốt giảm dần.
+                Giảm tuổi.
+            */
+
+            particle.life--;
+
+
+            /*
+                Độ mờ.
             */
 
             ctx.globalAlpha =
                 Math.max(
-                    p.life / 100,
+                    particle.life / 100,
                     0
                 );
 
@@ -382,16 +428,16 @@ function animateFireworks() {
 
 
             ctx.arc(
-                p.x,
-                p.y,
-                p.size,
+                particle.x,
+                particle.y,
+                particle.size,
                 0,
                 Math.PI * 2
             );
 
 
             ctx.fillStyle =
-                `hsl(${p.hue}, 100%, 70%)`;
+                `hsl(${particle.hue}, 100%, 70%)`;
 
 
             ctx.fill();
@@ -401,7 +447,7 @@ function animateFireworks() {
                 Xóa hạt đã hết tuổi.
             */
 
-            if (p.life <= 0) {
+            if (particle.life <= 0) {
 
                 particles.splice(
                     index,
@@ -413,10 +459,6 @@ function animateFireworks() {
     );
 
 
-    /*
-        Reset alpha.
-    */
-
     ctx.globalAlpha = 1;
 
 
@@ -426,11 +468,16 @@ function animateFireworks() {
 }
 
 
-/*
-    Bắt đầu pháo hoa.
-*/
+/* =========================
+   BẮT ĐẦU PHÁO HOA
+========================= */
 
 function startFireworks() {
+
+    /*
+        Không chạy nhiều animation
+        cùng lúc.
+    */
 
     if (fireworksStarted) {
         return;
@@ -440,14 +487,14 @@ function startFireworks() {
 
 
     /*
-        Chạy animation.
+        Bắt đầu animation.
     */
 
     animateFireworks();
 
 
     /*
-        Tạo pháo hoa liên tục.
+        Bắn 20 quả pháo.
     */
 
     let count = 0;
@@ -461,11 +508,6 @@ function startFireworks() {
             count++;
 
 
-            /*
-                Sau 20 lần vẫn để
-                một số hạt còn bay.
-            */
-
             if (count >= 20) {
 
                 clearInterval(
@@ -477,9 +519,9 @@ function startFireworks() {
 }
 
 
-/* =========================
-   FLYING HEARTS
-========================= */
+/* =====================================================
+   TRÁI TIM BAY
+===================================================== */
 
 
 /*
@@ -489,31 +531,21 @@ function startFireworks() {
 const heartTypes = [
 
     "❤️",
-
     "💕",
-
     "💗",
-
     "💖",
-
     "💓",
-
     "💘",
-
     "💝"
 
 ];
 
 
-/*
-    Tạo một trái tim.
-*/
+/* =========================
+   TẠO MỘT TRÁI TIM
+========================= */
 
 function createHeart() {
-
-    /*
-        Kiểm tra container.
-    */
 
     if (!heartsContainer) {
         return;
@@ -521,15 +553,8 @@ function createHeart() {
 
 
     const heart =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
-
-    /*
-        Thêm class để CSS
-        tạo animation.
-    */
 
     heart.classList.add(
         "heart-fly"
@@ -550,49 +575,44 @@ function createHeart() {
 
 
     /*
-        Vị trí ngang ngẫu nhiên.
+        Vị trí ngang.
     */
 
     heart.style.left =
-        Math.random() *
-        100 +
-        "vw";
+        Math.random() * 100 + "vw";
 
 
     /*
-        Kích thước ngẫu nhiên.
+        Kích thước.
     */
 
     heart.style.fontSize =
-        Math.random() *
-        25 +
+        Math.random() * 25 +
         15 +
         "px";
 
 
     /*
-        Thời gian bay ngẫu nhiên.
+        Tốc độ bay.
     */
 
     heart.style.animationDuration =
-        Math.random() *
-        4 +
+        Math.random() * 4 +
         4 +
         "s";
 
 
     /*
-        Độ trễ nhỏ.
+        Độ trễ.
     */
 
     heart.style.animationDelay =
-        Math.random() *
-        0.5 +
+        Math.random() * 0.5 +
         "s";
 
 
     /*
-        Thêm vào trang.
+        Thêm vào HTML.
     */
 
     heartsContainer.appendChild(
@@ -601,7 +621,7 @@ function createHeart() {
 
 
     /*
-        Xóa sau khi animation kết thúc.
+        Xóa sau khi bay xong.
     */
 
     setTimeout(() => {
@@ -612,18 +632,15 @@ function createHeart() {
 }
 
 
-/*
-    Tim bay nhẹ nhàng.
-*/
-
-let heartInterval;
-
+/* =========================
+   TIM BAY NHẸ
+========================= */
 
 function startFlyingHearts() {
 
     /*
-        Không tạo interval
-        nhiều lần.
+        Nếu đã chạy thì không tạo
+        interval thứ hai.
     */
 
     if (heartInterval) {
@@ -640,18 +657,48 @@ function startFlyingHearts() {
 }
 
 
-/*
-    Sau khi thổi nến,
-    tim xuất hiện dày hơn.
-*/
+/* =========================
+   TIM BAY SAU KHI THỔI NẾN
+========================= */
 
 function startCelebrationHearts() {
 
-    setInterval(() => {
+    /*
+        Không tạo nhiều interval
+        nếu click nhiều lần.
+    */
 
-        createHeart();
+    if (celebrationHeartInterval) {
+        return;
+    }
 
-        createHeart();
 
-    }, 450);
+    celebrationHeartInterval =
+        setInterval(() => {
+
+            createHeart();
+            createHeart();
+            createHeart();
+
+        }, 500);
 }
+
+
+/* =====================================================
+   CHẠY MỘT QUẢ PHÁO NHỎ KHI MỞ QUÀ
+   Không bắt buộc.
+===================================================== */
+
+/*
+    Nếu bạn không muốn có hiệu ứng gì
+    trước khi thổi nến thì giữ nguyên
+    như hiện tại.
+
+    Pháo hoa chỉ bắt đầu sau khi
+    click vào bánh.
+*/
+
+
+console.log(
+    "🎂 Happy Birthday website loaded!"
+);
