@@ -324,44 +324,29 @@ button:active {
 ========================= */
 
 .birthday-photo {
-
-    width: 150px;
-
-    height: 150px;
+    width: 190px;
+    height: 190px;
 
     object-fit: cover;
 
     border-radius: 50%;
 
-    border:
-        5px solid
-        rgba(255,255,255,0.85);
+    display: block;
+
+    margin: 15px auto;
+
+    border: 6px solid rgba(255, 255, 255, 0.9);
 
     box-shadow:
-        0 0 20px
-        rgba(255,255,255,0.5),
+        0 0 15px rgba(249, 168, 212, 0.8),
+        0 0 35px rgba(196, 181, 253, 0.6);
 
-        0 0 45px
-        rgba(236,72,153,0.5),
-
-        0 0 80px
-        rgba(139,92,246,0.3);
-
-    animation:
-        photoGlow 2s ease-in-out infinite alternate;
-
-    transition:
-        transform 0.4s ease;
+    transition: transform 0.4s ease;
 }
-
 
 .birthday-photo:hover {
-
-    transform:
-        scale(1.08)
-        rotate(2deg);
+    transform: scale(1.05);
 }
-
 
 @keyframes photoGlow {
 
