@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Happy Birthday 🎂</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Happy Birthday 🎂
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- =========================
          HIỆU ỨNG TRÁI TIM
@@ -29,7 +43,10 @@
          MÀN HÌNH MỞ ĐẦU
     ========================== -->
 
-    <section id="intro" class="screen">
+    <section
+        id="intro"
+        class="screen"
+    >
 
         <div class="card">
 
@@ -37,15 +54,20 @@
                 🎁
             </div>
 
+
             <h1>
                 Something Special...
             </h1>
 
+
             <p>
-                Có một món quà nhỏ dành cho bạn ❤️
+                Có một món quà nhỏ dành cho bé Paint ❤️
             </p>
 
-            <button onclick="startBirthday()">
+
+            <button
+                onclick="startBirthday()"
+            >
                 Mở quà 🎁
             </button>
 
@@ -58,10 +80,15 @@
          MÀN HÌNH SINH NHẬT
     ========================== -->
 
-    <section id="birthday" class="screen hidden">
+    <section
+        id="birthday"
+        class="screen hidden"
+    >
 
 
-        <!-- TIÊU ĐỀ -->
+        <!-- =========================
+             TIÊU ĐỀ
+        ========================== -->
 
         <h1 class="title">
             🎉 HAPPY BIRTHDAY 🎉
@@ -74,10 +101,8 @@
 
         <div class="profile">
 
-            <!--
-                Đổi birthday.jpg thành tên file ảnh
-                bạn upload lên GitHub.
-            -->
+
+            <!-- ẢNH -->
 
             <img
                 src="Paint-chan.jpeg"
@@ -86,14 +111,14 @@
             >
 
 
-            <!-- Đổi tên ở đây -->
+            <!-- TÊN -->
 
             <h2 class="person-name">
                 Lã Ngọc Sơn ❤️
             </h2>
 
 
-            <!-- Đổi ngày sinh ở đây -->
+            <!-- NGÀY SINH -->
 
             <p class="birth-date">
                 🎂 21 tháng 08, 2008
@@ -103,19 +128,25 @@
 
 
         <!-- =========================
-             LỜI DẪN
+             LỜI CHÚC BAN ĐẦU
         ========================== -->
 
-        <h2>
+        <h2 class="birthday-message">
             Chúc mừng sinh nhật bé Paint iu dấu của ck! 🎂
         </h2>
 
 
         <!-- =========================
              BÁNH SINH NHẬT
+             CLICK VÀO ĐÂY ĐỂ THỔI NẾN
         ========================== -->
 
-        <div class="cake-container">
+        <div
+            class="cake-container"
+            id="cakeArea"
+            onclick="blowCandle()"
+            title="Nhấn vào bánh để thổi nến 🎂"
+        >
 
             <div class="cake">
 
@@ -126,8 +157,8 @@
 
                     <div
                         class="flame"
-                        id="flame">
-                    </div>
+                        id="flame"
+                    ></div>
 
                 </div>
 
@@ -155,31 +186,26 @@
 
 
         <!-- =========================
-             NÚT THỔI NẾN
+             HƯỚNG DẪN
         ========================== -->
 
-        <p class="instruction">
-            🕯️ Hãy nhấn nút để thổi nến nào gái ui!
+        <p
+            class="instruction"
+            id="instruction"
+        >
+            🕯️ Nhấn vào bánh để thổi nến nhé! ✨
         </p>
-
-
-        <button
-            id="blowButton"
-            onclick="blowCandle()">
-
-            💨 Thổi nến
-
-        </button>
 
 
         <!-- =========================
              LỜI CHÚC
+             BAN ĐẦU ĐƯỢC ẨN
         ========================== -->
 
         <div
             id="wish"
-            class="wish hidden">
-
+            class="wish hidden"
+        >
 
             <h2>
                 💖 Chúc Paint-chan sinh nhật vui vẻ! 💖
@@ -187,8 +213,8 @@
 
 
             <!--
-                JavaScript sẽ tự động
-                viết lời chúc vào đây.
+                JavaScript sẽ viết
+                lời chúc từng chữ vào đây
             -->
 
             <p id="typing"></p>
@@ -214,11 +240,15 @@
          NHẠC SINH NHẬT
     ========================== -->
 
-    <audio id="music" loop>
+    <audio
+        id="music"
+        loop
+    >
 
         <source
             src="birthday.mp3"
-            type="audio/mpeg">
+            type="audio/mpeg"
+        >
 
     </audio>
 
@@ -229,5 +259,7 @@
 
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
