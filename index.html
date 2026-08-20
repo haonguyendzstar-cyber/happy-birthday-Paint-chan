@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday 🎂</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HIỆU ỨNG TRÁI TIM
+    ========================== -->
+
+    <div id="hearts"></div>
+
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="stars"></div>
+
+
+    <!-- =========================
+         MÀN HÌNH MỞ ĐẦU
+    ========================== -->
+
+    <section id="intro" class="screen">
+
+        <div class="card">
+
+            <div class="emoji">
+                🎁
+            </div>
+
+            <h1>
+                Something Special...
+            </h1>
+
+            <p>
+                Có một món quà nhỏ dành cho bạn ❤️
+            </p>
+
+            <button onclick="startBirthday()">
+                Mở quà 🎁
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MÀN HÌNH SINH NHẬT
+    ========================== -->
+
+    <section id="birthday" class="screen hidden">
+
+
+        <!-- TIÊU ĐỀ -->
+
+        <h1 class="title">
+            🎉 HAPPY BIRTHDAY 🎉
+        </h1>
+
+
+        <!-- =========================
+             THÔNG TIN NGƯỜI SINH NHẬT
+        ========================== -->
+
+        <div class="profile">
+
+            <!--
+                Đổi birthday.jpg thành tên file ảnh
+                bạn upload lên GitHub.
+            -->
+
+            <img
+                src="Paint-chan.jpg"
+                alt="Birthday Photo"
+                class="birthday-photo"
+            >
+
+
+            <!-- Đổi tên ở đây -->
+
+            <h2 class="person-name">
+                Lã Ngọc Sơn ❤️
+            </h2>
+
+
+            <!-- Đổi ngày sinh ở đây -->
+
+            <p class="birth-date">
+                🎂 21 tháng 08, 2008
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             LỜI DẪN
+        ========================== -->
+
+        <h2>
+            Chúc mừng sinh nhật bé Paint iu dấu của ck! 🎂
+        </h2>
+
+
+        <!-- =========================
+             BÁNH SINH NHẬT
+        ========================== -->
+
+        <div class="cake-container">
+
+            <div class="cake">
+
+
+                <!-- NẾN -->
+
+                <div class="candle">
+
+                    <div
+                        class="flame"
+                        id="flame">
+                    </div>
+
+                </div>
+
+
+                <!-- MẶT BÁNH -->
+
+                <div class="cake-top"></div>
+
+
+                <!-- THÂN BÁNH -->
+
+                <div class="cake-body">
+
+                    <div class="cream"></div>
+
+                    <div class="cream cream2"></div>
+
+                    <div class="cream cream3"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             NÚT THỔI NẾN
+        ========================== -->
+
+        <p class="instruction">
+            🕯️ Hãy nhấn nút để thổi nến nào gái ui!
+        </p>
+
+
+        <button
+            id="blowButton"
+            onclick="blowCandle()">
+
+            💨 Thổi nến
+
+        </button>
+
+
+        <!-- =========================
+             LỜI CHÚC
+        ========================== -->
+
+        <div
+            id="wish"
+            class="wish hidden">
+
+
+            <h2>
+                💖 Chúc Paint-chan sinh nhật vui vẻ! 💖
+            </h2>
+
+
+            <!--
+                JavaScript sẽ tự động
+                viết lời chúc vào đây.
+            -->
+
+            <p id="typing"></p>
+
+
+            <div class="heart">
+                ❤️
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PHÁO HOA
+    ========================== -->
+
+    <canvas id="fireworks"></canvas>
+
+
+    <!-- =========================
+         NHẠC SINH NHẬT
+    ========================== -->
+
+    <audio id="music" loop>
+
+        <source
+            src="birthday.mp3"
+            type="audio/mpeg">
+
+    </audio>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
